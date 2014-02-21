@@ -10,7 +10,7 @@
 # [*package_version*]
 #   This is version of the package to download (e.g. NSCP-0.4.1.101-x64.msi)
 
-class bixfix(
+class bigfix(
   $package_source  = $bigfix::params::package_source,
   $package_version = $bigfix::params::package_version
 ) inherits bigfix::params {

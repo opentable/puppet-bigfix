@@ -15,23 +15,23 @@ describe 'bigfix', :type => :class do
 
   context 'using params defaults' do
     it { should contain_class('bigfix') }
-    it { should contain_package('BigFix Enterprise Client')
-      .with_ensure('installed')
-      .with_provider('windows')
-      .with_source('')
-    }
+    it { should contain_package('BigFix Enterprise Client').with(
+      'ensure'   => 'installed',
+      'provider' => 'windows',
+      'source'   => '/'
+    )}
 
   end
 
   context 'installing a custom version' do
 
-    let(:params) { {'package_version' => 'CustomVersion.exe', 'package_source_location' => 'http://myproxy.com:8080' } }
+    let(:params) { {'package_version' => 'CustomVersion.exe', 'package_source' => 'http://myproxy.com:8080' } }
 
-    it { should contain_package('BigFix Enterprise Client')
-      .with_ensure('installed')
-      .with_provider('windows')
-      .with_source('http://myproxy.com:8080/CustomVersion.exe')
-    }
+    it { should contain_package('BigFix Enterprise Client').with(
+      'ensure'   => 'installed',
+      'provider' => 'windows',
+      'source'   => 'http://myproxy.com:8080/CustomVersion.exe'
+    )}
 
   end
 

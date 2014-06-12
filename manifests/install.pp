@@ -2,13 +2,16 @@
 #
 # Module to install BigFix exe.
 
-class bigfix::install {
+class bigfix::install(
+  $package_version = $bigfix::package_version,
+  $package_source = $bigfix::package_source
+) inherits bigfix::params {
 
   validate_re($::osfamily, '^(Windows)$', 'This module can only work on Windows Systems.')
-  validate_string($bigfix::params::package_version)
-  validate_string($bigfix::params::package_source)
+  validate_string($bigfix::install::package_version)
+  validate_string($bigfix::install::params::package_source)
 
-  $source = "${bigfix::params::package_source}/${bigfix::params::package_version}"
+  $source = "${bigfix::install::package_source}/${bigfix::install::package_version}"
 
   case $::osfamily {
     'Windows': {
